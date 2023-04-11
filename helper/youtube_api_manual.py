@@ -6,7 +6,6 @@ from googleapiclient.discovery import build
 
 import isodate
 
-
 # YT_API_KEY скопирован из гугла и вставлен в переменные окружения
 api_key: str = os.getenv('YT_API_KEY')
 
@@ -16,7 +15,7 @@ youtube = build('youtube', 'v3', developerKey=api_key)
 
 def printj(dict_to_print: dict) -> None:
     """Выводит словарь в json-подобном удобном формате с отступами"""
-    print(json.dumps(dict_to_print, indent=2, ensure_ascii=False))
+ #   print(json.dumps(dict_to_print, indent=2, ensure_ascii=False))
 
 
 '''
@@ -25,8 +24,8 @@ docs: https://developers.google.com/youtube/v3/docs/channels/list
 
 сервис для быстрого получения id канала: https://commentpicker.com/youtube-channel-id.php
 '''
-# channel_id = 'UCMCgOm8GZkHp8zJ6l7_hIuA'  # вДудь
-channel_id = 'UC1eFXmJNkjITxPFWTy6RsWg'  # Редакция
+channel_id = 'UCMCgOm8GZkHp8zJ6l7_hIuA'  # вДудь
+# channel_id = 'UC1eFXmJNkjITxPFWTy6RsWg'  # Редакция
 channel = youtube.channels().list(id=channel_id, part='snippet,statistics').execute()
 printj(channel)
 
@@ -79,7 +78,7 @@ for video in video_response['items']:
     # YouTube video duration is in ISO 8601 format
     iso_8601_duration = video['contentDetails']['duration']
     duration = isodate.parse_duration(iso_8601_duration)
-    print(duration)
+#    print(duration)
 
 
 '''
@@ -87,7 +86,7 @@ for video in video_response['items']:
 получить id можно из адреса видео
 https://www.youtube.com/watch?v=9lO06Zxhu88 или https://youtu.be/9lO06Zxhu88
 '''
-video_id = '9lO06Zxhu88'
+# video_id = '9lO06Zxhu88'
 video_id = '9lO06Zxhu88'  # дудь кремниевая долина
 video_id = '4jRSy-_CLFg'  # Редакция плейлист анти-тревел
 video_response = youtube.videos().list(part='snippet,statistics,contentDetails,topicDetails',
